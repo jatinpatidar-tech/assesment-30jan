@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { searchMovies, getMovieDetails } from "../../services/api";
+import axios from "axios";
 
 // TODO: Create async thunk for fetching movies
 export const fetchMovies = createAsyncThunk(
   "movies/fetchMovies",
   async ({ searchTerm, page, type, year }) => {
     // TODO: Call searchMovies API
+      
     // Return data
   },
 );

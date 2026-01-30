@@ -9,16 +9,33 @@ const userSlice = createSlice({
   },
   reducers: {
     addToWatchlist: (state, action) => {
-      // TODO: Add movie ID to watchlist
-      // Save to localStorage
+            if(action.payload){
+       state.watchlist.push(action.payload);
+       saveToStorage("watchlist", state.watchlist);
+        
+    }
     },
     removeFromWatchlist: (state, action) => {
-      // TODO: Remove movie ID from watchlist
-      // Save to localStorage
+      state.watchlist.forEach((item, index) => {
+          if(item === action.payload){
+            state.watchlist.splice(index,1);
+          }
+
+    })  
+    saveToStorage("watchlist", state.watchlist);
     },
     toggleFavorite: (state, action) => {
-      // TODO: Toggle favorite status
-      // Save to localStorage
+       console.log("action",action.payload);
+      if (action.payload) {
+        state.favorites.push(action.payload);
+        saveToStorage("favorites", state.favorites);
+      } else {
+        state.favorites.forEach((item, index) => {
+          if (item === action.payload) {
+            state.favorites.splice(index, 1);
+          }
+        });
+      }
     },
   },
 });
