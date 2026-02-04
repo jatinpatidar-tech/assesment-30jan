@@ -7,6 +7,7 @@ const filtersSlice = createSlice({
     type: "all",
     year: "all",
   },
+
   reducers: {
     setSearchTerm: (state, action) => {
       // TODO: Update search term
@@ -22,6 +23,7 @@ const filtersSlice = createSlice({
     },
   },
 });
+
 
 export const { setSearchTerm, setType, setYear, clearFilters } =
   filtersSlice.actions;

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import './Header.css';
+import SearchResults from '../pages/SearchResults';
 
 export default function Header() {
   return (
@@ -9,13 +10,14 @@ export default function Header() {
       <div className="header-left">
      
         <nav className="header-nav">
-          <Link to="/" className="header-link">Home</Link>
-          <Link to="/watchlist" className="header-link">Watchlist</Link>
-          <Link to="/favorites" className="header-link">Favorites</Link>
+          <NavLink className={({ isActive }) => isActive ? "header-link active" : "header-link"} to="/">Home</NavLink>
+          <NavLink className={({ isActive }) => isActive ? "header-link active" : "header-link"} to="/watchlist">Watchlist</NavLink>
+          <NavLink className={({ isActive }) => isActive ? "header-link active" : "header-link"} to="/favorites">Favorites</NavLink>
+          {/* <NavLink className={({ isActive }) => isActive ? "header-link active" : "header-link"} to="/search">Search</NavLink> */}
         </nav>
       </div>
       <div className="header-search">
-        <SearchBar />
+        <SearchBar  />
       </div>
     </header>
   );

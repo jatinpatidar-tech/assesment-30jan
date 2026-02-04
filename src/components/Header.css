@@ -7,7 +7,9 @@
       color: #fff;
       margin-bottom: 24px;
 }
-
+.active {
+      color: #0015ff;
+}
 .header-left {
       display: flex;
       align-items: center;
@@ -34,7 +36,5 @@
 .header-link:hover {
       color: #ff9800;
 }
+ 
 
-.header-search {
-      
-}

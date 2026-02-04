@@ -7,28 +7,35 @@ const userSlice = createSlice({
     watchlist: loadFromStorage("watchlist", []),
     favorites: loadFromStorage("favorites", []),
   },
-  reducers: {
-    addToWatchlist: (state, action) => {
-            if(action.payload){
-       state.watchlist.push(action.payload);
-       saveToStorage("watchlist", state.watchlist);
-        
-    }
-    },
-    removeFromWatchlist: (state, action) => {
-      state.watchlist.forEach((item, index) => {
-          if(item === action.payload){
-            state.watchlist.splice(index,1);
-          }
 
-    })  
-    saveToStorage("watchlist", state.watchlist);
+
+  reducers: {
+
+    
+    
+
+    toggleWatchlist: (state, action) => {
+
+    
+      if (state.watchlist.includes(action.payload) === false) {
+        state.watchlist.push(action.payload);}
+        else {
+          state.watchlist.forEach((item, index) => {
+            if (item === action.payload) {
+              state.watchlist.splice(index, 1);
+            }
+          });
+        }
+        saveToStorage("watchlist", state.watchlist);
+
+ 
     },
+    
     toggleFavorite: (state, action) => {
-       console.log("action",action.payload);
-      if (action.payload) {
+      
+      if (state.favorites.includes(action.payload) === false) {
         state.favorites.push(action.payload);
-        saveToStorage("favorites", state.favorites);
+      
       } else {
         state.favorites.forEach((item, index) => {
           if (item === action.payload) {
@@ -36,10 +43,11 @@ const userSlice = createSlice({
           }
         });
       }
+      saveToStorage("favorites", state.favorites);
     },
   },
 });
-
-export const { addToWatchlist, removeFromWatchlist, toggleFavorite } =
-  userSlice.actions;
+    
+ 
+export const { toggleWatchlist, toggleFavorite } = userSlice.actions;
 export default userSlice.reducer;

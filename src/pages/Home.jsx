@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import MovieCard from "../components/MovieCard";
+
 export default function Home() {
   const [data, setData] = useState({});
   const [page, setPage] = useState(1);
@@ -34,7 +35,7 @@ export default function Home() {
     }
   return (
     <div>
-      <h1>Home Page</h1>
+     
 
       <div style={{
         display: 'grid',
@@ -46,8 +47,8 @@ export default function Home() {
           <MovieCard key={movie.imdbID} {...movie} handleDetails={handleDetails} />
         ))}
       </div>
-      <button onClick={() => setPage(page + 1)}>Next page</button>
       <button onClick={() => setPage(page -1)}>Previous page</button>
+      <button onClick={() => setPage(page + 1)}>Next page</button>
     </div>
   )
 }

@@ -2,13 +2,18 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './MovieDetails.css';
+import { useSelector } from 'react-redux';
+import {FaHeart } from "react-icons/fa";
+import  {IoBookmarkSharp} from "react-icons/io5";
 import { useDispatch } from 'react-redux';
-import { toggleFavorite } from '../store/slices/userSlice';
-// import { toggleWatchlist } from '../store/slices/userSlice';
+import { toggleFavorite  } from '../store/slices/userSlice';
+import { toggleWatchlist } from '../store/slices/userSlice';
 const MovieDetails = ({ imdbID }) => {
+   const [FavColor,setFavColor]=React.useState(useSelector((state) => state.user.favorites.includes(imdbID))    );
+   const[WatchlistColor,setWatchlistColor]=React.useState(useSelector((state) => state.user.watchlist.includes(imdbID))    );
 
-//   const { imdbID} = useParams();
   if(!imdbID){
+
     imdbID=useParams().imdbID;
   }
   const [data, setData] = useState({});
@@ -22,6 +27,7 @@ const MovieDetails = ({ imdbID }) => {
       } catch (err) {
         console.log(err);
       }
+       
     };
     if (imdbID) fetchMovie();
   }, [imdbID]);
@@ -49,8 +55,9 @@ const MovieDetails = ({ imdbID }) => {
       <h4>Plot: {data.Plot}</h4>
       <h4>IMDB Rating: {data.imdbRating}</h4>
       {data.Poster && <img  className="movie-poster" src={data.Poster} alt={data.Title} />}
-        <button onClick={() => {handlefavorites(data.imdbID)}}>Favorites</button>
-        <button onClick={() => {handleWatchlist(data.imdbID)}}>Watchlist</button>
+    
+                      <button onClick={() => {handlefavorites(imdbID), setFavColor(!FavColor)}}><FaHeart color={ FavColor ? "red" : "grey" } /></button>
+                    <button onClick={() => {handleWatchlist(imdbID), setWatchlistColor(!WatchlistColor)}}><IoBookmarkSharp color={ WatchlistColor ? "red" : "grey" } /></button>
        
     </div>
 
