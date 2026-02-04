@@ -1,6 +1,6 @@
 
-import React, { use } from 'react'
-import {FaHeart ,FaRegBookmark} from "react-icons/fa";
+import React from 'react'
+import {FaHeart } from "react-icons/fa";
 import  {IoBookmarkSharp} from "react-icons/io5";
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite,toggleWatchlist } from '../store/slices/userSlice';

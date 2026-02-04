@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import './Header.css';
-import SearchResults from '../pages/SearchResults';
+
 
 export default function Header() {
   return (
